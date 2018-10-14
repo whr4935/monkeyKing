@@ -1,11 +1,11 @@
 include $(BUILD_DIR)/Header.mk
 
-MODULE  := monkeyKing
+MODULE  := android_foundation_test
 SRC_DIR :=
 DEFINE  :=
-INCLUDE :=
+INCLUDE := -I$(BASE_DIR)/android/include/foundation
 LDFLAGS := -Wl,-rpath="out/lib"
-LIBS    := -L$(LIBS_DIR) -landroid_utils  -landroid_foundation -pthread -lrt
+LIBS    :=
 
 
 $(call build-target, executable)

@@ -1,6 +1,6 @@
-include $(BASE_DIR)/Header.mk
+include $(BUILD_DIR)/Header.mk
 
-MODULE  := 
+MODULE  := android_utils
 SRC_DIR :=
 DEFINE  :=
 INCLUDE :=
@@ -11,4 +11,4 @@ LIBS    :=
 $(call build-target, shared_library)
 
 
-include $(BASE_DIR)/Footer.mk
+include $(BUILD_DIR)/Footer.mk

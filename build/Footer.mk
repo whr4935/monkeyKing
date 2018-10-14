@@ -29,7 +29,7 @@ shared_library:$(LIBS_DIR)/lib$(MODULE).so
 
 static_library:$(LIBS_DIR)/lib$(MODULE).a
 
-executable:$(BUILD_DIR)/$(MODULE)
+executable:$(OUT_DIR)/$(MODULE)
 
 $(PLUGIN_DIR)/lib$(MODULE).so:$(OBJ)
 	@$(CXX) -shared $(LDFLAGS) -o$@ $^ $(LIBS)
@@ -43,7 +43,7 @@ $(LIBS_DIR)/lib$(MODULE).a:$(OBJ)
 	@$(AR) -r $@ $^
 	@echo "  AR      \033[1m\033[32mlib$(MODULE).a\033[0m"
 
-$(BUILD_DIR)/$(MODULE):$(OBJ)
+$(OUT_DIR)/$(MODULE):$(OBJ)
 	@$(CXX) $(LDFLAGS) -o$@ $^ $(LIBS)
 	@echo "  BUILD   \033[1m\033[32m$(MODULE)\033[0m"
 
@@ -54,11 +54,11 @@ $(OBJ_DIR):
 	@mkdir $(OBJ_DIR)
 
 $(OBJ_DIR)/%.o:%.c |$(OBJ_DIR)
-	@$(CC) $(CFLAGS) $(DEFINE) $(COMMON_INC) $(INCLUDE) -c $< -o $@ -MD -MF $(@:.o=.dep)
+	@$(CC) $(CFLAGS) $(DEFINE) $(COMMON_INC) $(INCLUDE) -c $< -o $@ -MMD -MF $(@:.o=.dep)
 	@echo "  CC      $<"
 
 $(OBJ_DIR)/%.o:%.cpp |$(OBJ_DIR)
-	$(CXX) $(CXXFLAGS) $(DEFINE) $(COMMON_INC) $(INCLUDE) -c $< -o $@ -MD -MF $(@:.o=.dep)
+	@$(CXX) $(CXXFLAGS) $(DEFINE) $(COMMON_INC) $(INCLUDE) -c $< -o $@ -MMD -MF $(@:.o=.dep)
 	@echo "  CXX     $<"
 
 $(eval $(cur-subdirs))
@@ -70,7 +70,7 @@ clean:
 	done;
 	-rm -rf $(OBJ_DIR)
 	@if  [ $(build_type) = 'executable' ];then \
-		target=$(BUILD_DIR)/$(MODULE); \
+		target=$(OUT_DIR)/$(MODULE); \
 	elif [ $(build_type) = 'shared_library' ];then \
 		target=$(LIBS_DIR)/lib$(MODULE).so; \
 	elif [ $(build_type) = 'plugin' ];then \

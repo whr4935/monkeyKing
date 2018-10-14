@@ -41,17 +41,17 @@ flags = [
     '-I.',
     '-Iinclude',
     '-isystem',
-    '/usr/include/c++/7',
+    '/usr/include/c++/5',
     '-isystem',
-    '/usr/include/x86_64-linux-gnu/c++/7'
+    '/usr/include/x86_64-linux-gnu/c++/5'
     '-isystem',
-    '/usr/include/c++/7/backward'
+    '/usr/include/c++/5/backward'
     '-isystem',
-    '/usr/lib/gcc/x86_64-linux-gnu/7/include'
+    '/usr/lib/gcc/x86_64-linux-gnu/5/include'
     '-isystem',
     '/usr/local/include',
     '-isystem',
-    '/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed'
+    '/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed'
     '-isystem',
     '/usr/include/x86_64-linux-gnu',
     '-isystem',

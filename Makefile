@@ -1,29 +1,15 @@
-include Define.mk
+include $(BUILD_DIR)/Define.mk
+
+all:
 
 TARGET_DIRS:= $(OBJS_DIR) $(LIBS_DIR)
+$(eval $(make-in-subdirs))
 
-FILTER_OUT_DIRS:=build include tmp
+all:$(TARGET_DIRS) build_target
 
-SUB_DIRS:=$(shell find . -maxdepth 1 -type d)
-SUB_DIRS:=$(basename $(patsubst ./%,%,$(SUB_DIRS)))
-SUB_DIRS:=$(filter-out $(FILTER_OUT_DIRS), $(SUB_DIRS))
-
-
-all: TARGET:=target
-all:$(TARGET_DIRS) $(SUB_DIRS)
-
-
-main:utils foundation
-
-
-
-clean: TARGET:=clean
-clean:$(SUB_DIRS)
-
-$(SUB_DIRS):
-	@$(MAKE) -C$@ $(TARGET)
+main:android
 
 $(TARGET_DIRS):
 	@-mkdir -p $@ 
 
-.PHONY:all clean $(SUB_DIRS)
+.PHONY:all 
