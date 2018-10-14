@@ -19,35 +19,37 @@ define cur-subdirs
 endef
 
 #########################################
-define make-in-subdir
-	@if [ -f $@/Makefile ];then \
-	 $(MAKE) -C $@ $(TARGET) || exit $$?; \
-	fi
+define set-subdirs-target
+$(if $(subdirs),.PHONY:$(subdirs))
+$(if $(subdirs),$(subdirs):
+	@echo -n
+	@if [ -f $$@/Makefile ];then \
+	 $(MAKE) -C $$@ $$(TARGET) || exit $$?; \
+	fi)
 endef
 
-define make-in-subdirs 
-$(cur-subdirs)
-build_target clean: 
-	@if [ -n "$$(subdirs)" ]; then $(MAKE) $$(subdirs) TARGET=$$@; fi
-
+define do-make-in-subdirs
 .PHONY:build_target clean
-$(if $$(subdirs), .PHONY:$$(subdirs))
-$(if $$(subdirs), $$(subdirs):;$$(make-in-subdir))
+build_target clean:
+	@echo -n
+	$(if $(subdirs), @$(MAKE) $(subdirs) TARGET=$$@)
+$(set-subdirs-target)
+endef
+
+define make-in-subdirs
+$(eval $(cur-subdirs)) \
+$(eval $(do-make-in-subdirs))
 endef
 
 #########################################
 define set-build-target
+build_type := $(1)
+.PHONY:build_target
 build_target:$(1)
 	@echo -n
 	$(if $(subdirs), @$(MAKE) $(subdirs) TARGET=$$@)
-
-.PHONY:build_target clean
-$(if $$(subdirs), .PHONY:$$(subdirs))
-$(if $$(subdirs), $$(subdirs):;$$(make-in-subdir))
-
-build_type := $(1)
+$(set-subdirs-target)
 endef
-
 
 define build-target
 $(eval $(cur-subdirs)) \
