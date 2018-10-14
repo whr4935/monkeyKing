@@ -7,6 +7,8 @@
 #include <foundation/AHandler.h>
 #include <foundation/AMessage.h>
 
+#include <gtest/gtest.h>
+
 using namespace android;
 class Base : public android::RefBase
 {
@@ -33,9 +35,9 @@ public:
 };
 
 
-int main(int argc, char *argv[])
+int cmain(int argc, char *argv[])
 {
-    ALOGI("hello");    
+    ALOGI("hello");
 
     sp<Base> p = new Base();
     p->fun();
@@ -80,3 +82,11 @@ int main(int argc, char *argv[])
 
     return 0;
 }
+
+int main(int argc, char *argv[])
+{
+    testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}
+
+

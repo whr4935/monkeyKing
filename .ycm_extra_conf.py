@@ -38,20 +38,21 @@ flags = [
     'c++',
     '-Werror',
     '-std=c++11',
-    '-I.',
+    '-Iandroid/include',
+    '-Iandroid',
     '-Iinclude',
     '-isystem',
     '/usr/include/c++/5',
     '-isystem',
-    '/usr/include/x86_64-linux-gnu/c++/5'
+    '/usr/include/x86_64-linux-gnu/c++/5',
     '-isystem',
-    '/usr/include/c++/5/backward'
+    '/usr/include/c++/5/backward',
     '-isystem',
-    '/usr/lib/gcc/x86_64-linux-gnu/5/include'
+    '/usr/lib/gcc/x86_64-linux-gnu/5/include',
     '-isystem',
     '/usr/local/include',
     '-isystem',
-    '/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed'
+    '/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed',
     '-isystem',
     '/usr/include/x86_64-linux-gnu',
     '-isystem',

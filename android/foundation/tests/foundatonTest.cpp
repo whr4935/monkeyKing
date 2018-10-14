@@ -1,7 +1,20 @@
 #include <iostream>
+#include <gtest/gtest.h>
 
-int main(int argc, char *argv[])
+struct Foo
 {
-    std::cout << "foundation test" << std::endl; 
-    return 0;
+    int print()
+    {
+        std::cout << "Foo print" << std::endl;
+        return 0;
+    }
+};
+
+TEST(FooTest, 1)
+{
+    EXPECT_EQ(1, 1);
+
+    Foo f;
+    EXPECT_EQ(f.print(), 0);
 }
+

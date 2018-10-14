@@ -44,7 +44,7 @@ $(LIBS_DIR)/lib$(MODULE).a:$(OBJ)
 	@echo "  AR      \033[1m\033[32mlib$(MODULE).a\033[0m"
 
 $(OUT_DIR)/$(MODULE):$(OBJ)
-	@$(CXX) $(LDFLAGS) -o$@ $^ $(LIBS)
+	@$(CXX) $(LDFLAGS) $(EXECUTABLE_LDFLAGS) -o$@ $^ $(LIBS) $(EXECUTABLE_LIBS)
 	@echo "  BUILD   \033[1m\033[32m$(MODULE)\033[0m"
 
 
@@ -69,21 +69,19 @@ clean:
 		fi; \
 	done;
 	-rm -rf $(OBJ_DIR)
-	@if  [ $(build_type) = 'executable' ];then \
-		target=$(OUT_DIR)/$(MODULE); \
-	elif [ $(build_type) = 'shared_library' ];then \
-		target=$(LIBS_DIR)/lib$(MODULE).so; \
-	elif [ $(build_type) = 'plugin' ];then \
-		target=$(PLUGIN_DIR)/lib$(MODULE).so; \
-	elif [ $(build_type) = 'static_library' ];then \
-		target=$(LIBS_DIR)/lib$(MODULE).a; \
-	else \
-		target=""; \
-	fi; \
-	 if  [ -n "$$target" ];then \
-		echo rm -rf $$target; \
-		rm -rf $$target; \
-	fi
+	@for type in $(build_type);do \
+		case $$type in \
+			executable) target=$(OUT_DIR)/$(MODULE) ;; \
+			shared_library) target=$(LIBS_DIR)/lib$(MODULE).so ;; \
+			plugin) target=$(PLUGIN_DIR)/lib$(MODULE).so ;; \
+			static_library) target=$(LIBS_DIR)/lib$(MODULE).a ;; \
+		esac; \
+		if  [ -n "$$target" ];then \
+			echo rm -rf $$target; \
+			rm -rf $$target; \
+		fi; \
+	done
+
 
 install_plugin:
 	-cp $(PLUGIN_DIR)/lib$(MODULE).so ~/.silentdream/plugins/ -rf
