@@ -10,6 +10,7 @@ LIBS    :=  -Wl,-whole-archive $(LIBS_DIR)/libfoundation.a $(LIBS_DIR)/libutils.
 
 $(call build-target, shared_library)
 
+shared_library: foundation utils
 foundation:utils
 
 include $(BUILD_DIR)/Footer.mk
