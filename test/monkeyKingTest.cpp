@@ -1,5 +1,5 @@
 #include <iostream>
-#include <utils/log.h>
+#include <utils/Log.h>
 #include <utils/RefBase.h>
 #include <memory>
 #include <utils/Vector.h>
@@ -73,7 +73,7 @@ int cmain(int argc, char *argv[])
     sp<ALooper> th = new ALooper;
     sp<MyHandler> mh = new MyHandler;
     th->registerHandler(mh);
-    sp<AMessage> msg = new AMessage(1, mh->id());
+    sp<AMessage> msg = new AMessage(1, mh);
     th->start();
     msg->post();
 

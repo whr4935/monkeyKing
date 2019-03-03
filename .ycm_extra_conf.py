@@ -37,10 +37,7 @@ flags = [
     '-x',
     'c++',
     '-Werror',
-    '-std=c++11',
-    '-Iandroid/include',
-    '-Iandroid',
-    '-Iinclude',
+    '-std=c++14',
     '-isystem',
     '/usr/include/c++/5',
     '-isystem',
@@ -57,6 +54,8 @@ flags = [
     '/usr/include/x86_64-linux-gnu',
     '-isystem',
     '/usr/include',
+    '-Isrc/include',
+    '-Isrc/include/foundation',
 ]
 
 
