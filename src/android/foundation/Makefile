@@ -3,7 +3,7 @@ include $(BUILD_DIR)/Header.mk
 MODULE  := foundation
 SRC_DIR :=
 DEFINE  :=
-INCLUDE := -I$(BASE_DIR)/src/include/ -I$(BASE_DIR)/src/include/foundation
+INCLUDE := -I$(BASE_DIR)/src/android/include -I$(BASE_DIR)/src/android/include/foundation
 LDFLAGS := 
 LIBS    :=
 
