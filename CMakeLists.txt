@@ -5,4 +5,4 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS on)
 project(monkeyKing)
 
 
-add_subdirectory(src/android)
+add_subdirectory(src)

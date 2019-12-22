@@ -15,6 +15,7 @@ foreach(var ${SOURCES})
     add_compile_options("$<$<COMPILE_LANGUAGE:CXX>:-g>")
 
     target_link_libraries(${target} -lgtest_main -lgtest android_utils)
+    set_target_properties(${target} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
 
 endforeach(var)
 
