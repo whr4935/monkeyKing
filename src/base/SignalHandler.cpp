@@ -4,8 +4,8 @@
 #include <sstream>
 #include <iomanip>
 
-#include <Base/Global.h>
-#include <Base/Log.h>
+#include <base/Global.h>
+#include <base/Log.h>
 #include "SignalHandler.h"
 #include "CallStack.h"
 

@@ -1,8 +1,8 @@
 #include <sys/stat.h>
 #include <libgen.h>
 #include <dirent.h>
-#include <Base/Util.h>
-#include <Base/Log.h>
+#include <base/Util.h>
+#include <base/Log.h>
 
 static char cwd[PATH_MAX];
 

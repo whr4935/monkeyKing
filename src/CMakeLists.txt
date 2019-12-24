@@ -8,5 +8,6 @@ set_target_properties(${MODULE_NAME} PROPERTIES  LIBRARY_OUTPUT_DIRECTORY ${PROJ
 
 target_link_libraries(${MODULE_NAME}
     "-Wl,--whole-archive"
-    base android_utils
+    android_utils
+    monkeyking_base
     "-Wl,--no-whole-archive")

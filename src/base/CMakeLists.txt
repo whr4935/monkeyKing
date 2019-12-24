@@ -1,6 +1,6 @@
 aux_source_directory(. SOURCES)
 
-set(MODULE_NAME base)
+set(MODULE_NAME monkeyking_base)
 
 message(SOURCES=${SOURCES})
 
