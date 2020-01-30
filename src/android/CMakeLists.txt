@@ -1,11 +1,11 @@
 
-find_library(SAFE_IOP libsafe_iop)
+#find_library(SAFE_IOP libsafe_iop)
 
-if (NOT SAFE_IOP)
-    message(FATAL_ERROR "safe_iop not found!")
-else()
-    message(safe_iop=${SAFE_IOP} ddd ${libsafe_iop})
-endif()
+#if (NOT SAFE_IOP)
+    #message(FATAL_ERROR "safe_iop not found!")
+#else()
+    #message(safe_iop=${SAFE_IOP} ddd ${libsafe_iop})
+#endif()
 
 
 MACRO(SUBDIRLIST result curdir)
